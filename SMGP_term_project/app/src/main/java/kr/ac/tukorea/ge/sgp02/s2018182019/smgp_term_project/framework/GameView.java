@@ -10,6 +10,9 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.R;
+import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.game.HorzBackGround;
+
 public class GameView extends View implements Choreographer.FrameCallback {
     public static GameView view;
     private long lastTimeNanos;

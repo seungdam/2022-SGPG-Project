@@ -1,19 +1,33 @@
 package kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
 public class Sprite implements GameObject{
     protected Bitmap bitmap;
     protected RectF dstRect = new RectF();
-    protected float x , y;
+    protected float x , y,radius;
 
-    public Sprite(float x,float y,int bitmapResId) {
+    public Sprite(float x,float y,int radiusDimeResId,int bitmapResId) {
         this.x = x;
         this.y = y;
-
+        this.radius = Metrics.size(radiusDimeResId);
+        dstRect.set(x - radius, y -radius , x + radius , y +radius);
+        bitmap = BitmapPool.get(bitmapResId);
     }
+
+    public Sprite(float x, float y, float w, float h, int bitmapResId) {
+        this.x = x;
+        this.y = y;
+        this.radius = w / 2;
+        dstRect.set(x - w / 2, y - h / 2, x + w / 2, y + h / 2);
+        Resources res = GameView.view.getResources();
+        bitmap = BitmapFactory.decodeResource(res, bitmapResId);
+    }
+
     @Override
     public void update() {
 

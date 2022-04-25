@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SMGP_term_project">
         <activity
+            android:screenOrientation="portrait"
             android:name=".app.MainActivity"
             android:exported="true">
             <intent-filter>

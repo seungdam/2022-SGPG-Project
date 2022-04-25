@@ -5,12 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.R;
+import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.Metrics;
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.Sprite;
 
 public class HorzBackGround extends Sprite {
-    protected static int BITMAP_IDS = R.mipmap.scroll_test;
-    public HorzBackGround(float x , float y) {
-
+    public HorzBackGround(int bitmapResId) {
+        super(Metrics.width / 2 , Metrics.height / 2,Metrics.width,Metrics.height,bitmapResId);
     }
     @Override
     public void update() {
