@@ -28,6 +28,8 @@ public class Sprite implements GameObject{
         bitmap = BitmapFactory.decodeResource(res, bitmapResId);
     }
 
+
+
     @Override
     public void update() {
 

@@ -36,19 +36,23 @@ public class GameView extends View implements Choreographer.FrameCallback {
         if (!initialized) {
             initView();
             initialized = true;
+            Choreographer.getInstance().postFrameCallback(this);
         }
     }
+
     public void initView() {
-
-
-
+        MainGame.getInstance().init();
     }
+
     @Override
     public void doFrame(long currentTimeNanos) {
         if(!running) {
             return;
         }
         long now = currentTimeNanos;
+        if(lastTimeNanos == 0) {
+            lastTimeNanos =now;
+        }
 
         int elapsed = (int) (now - lastTimeNanos);
         if(elapsed != 0) {
@@ -62,12 +66,12 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+        MainGame.getInstance().draw(canvas);
 
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        return super.onTouchEvent(event);
+        return MainGame.getInstance().onMoveEvent(event);
     }
 }
