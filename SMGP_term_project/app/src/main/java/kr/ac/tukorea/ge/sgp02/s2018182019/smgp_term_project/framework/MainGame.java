@@ -12,6 +12,7 @@ public class MainGame {
     private static MainGame singleton;
     private  static final String TAG = MainGame.class.getSimpleName();
     public float frameTime;
+    public boolean scrolling = true;
     public static float mouseX, mouseY;
     private GameObject backGround;
     public static MainGame getInstance() {
@@ -29,10 +30,14 @@ public class MainGame {
     public boolean onMoveEvent(MotionEvent event) {
         int action = event.getAction();
         switch (action) {
+            case MotionEvent.ACTION_UP:
+                scrolling = false;
+                return true;
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
                 mouseX = event.getX();
                 mouseY = event.getY();
+                scrolling = true;
                 return true;
         }
         return false;
