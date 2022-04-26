@@ -4,6 +4,7 @@ import android.content.Context;
 
 import android.graphics.Canvas;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Choreographer;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,7 +20,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private int framesPerSecond;
     private boolean initialized;
     private boolean running;
-
+    private static final String TAG = GameView.class.getSimpleName();
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         view = this;
@@ -36,12 +37,13 @@ public class GameView extends View implements Choreographer.FrameCallback {
         if (!initialized) {
             initView();
             initialized = true;
-            Choreographer.getInstance().postFrameCallback(this);
         }
     }
 
     public void initView() {
-        MainGame.getInstance().init();
+        MainGame game = MainGame.getInstance();
+        game.init();
+        Choreographer.getInstance().postFrameCallback(this);
     }
 
     @Override
@@ -61,11 +63,13 @@ public class GameView extends View implements Choreographer.FrameCallback {
             game.update(elapsed);
             invalidate();
         }
+
         Choreographer.getInstance().postFrameCallback(this);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
+
         MainGame.getInstance().draw(canvas);
 
     }

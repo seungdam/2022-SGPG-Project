@@ -37,7 +37,7 @@ public class Sprite implements GameObject{
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(bitmap,null,dstRect,null);
+        canvas.drawBitmap(bitmap,null, dstRect,null);
     }
 
     public void setDstRect(float width,float height) {
