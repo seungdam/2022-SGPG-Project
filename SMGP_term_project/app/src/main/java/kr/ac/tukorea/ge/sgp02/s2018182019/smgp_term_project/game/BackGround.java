@@ -21,7 +21,6 @@ public class BackGround extends Sprite {
         height = bitmap.getHeight() * Metrics.width / bitmap.getWidth();
     }
 
-
     @Override
     public void update() {
 
