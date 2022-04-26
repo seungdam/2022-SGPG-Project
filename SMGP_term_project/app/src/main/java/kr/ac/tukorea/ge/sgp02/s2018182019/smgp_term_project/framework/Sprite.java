@@ -24,11 +24,13 @@ public class Sprite implements GameObject{
         this.y = y;
         this.radius = w / 2;
         dstRect.set(x - w / 2, y - h / 2, x + w / 2, y + h / 2);
-        Resources res = GameView.view.getResources();
-        bitmap = BitmapFactory.decodeResource(res, bitmapResId);
+        bitmap = BitmapPool.get(bitmapResId);
     }
 
-
+    public Sprite(int bitmapResId) {
+        dstRect.set(0, 0, Metrics.width, Metrics.height);
+        bitmap = BitmapPool.get(bitmapResId);
+    }
 
     @Override
     public void update() {
@@ -37,7 +39,7 @@ public class Sprite implements GameObject{
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(bitmap,null, dstRect,null);
+        canvas.drawBitmap(bitmap,null,dstRect,null);
     }
 
     public void setDstRect(float width,float height) {

@@ -11,20 +11,17 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.R;
-import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.game.HorzBackGround;
-
 public class GameView extends View implements Choreographer.FrameCallback {
     public static GameView view;
     private long lastTimeNanos;
     private int framesPerSecond;
     private boolean initialized;
-    private boolean running;
-    private static final String TAG = GameView.class.getSimpleName();
+    private boolean running = true;
+    public static final String TAG = GameView.class.getSimpleName();
+
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         view = this;
-
     }
 
     @Override
@@ -48,19 +45,16 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
     @Override
     public void doFrame(long currentTimeNanos) {
-        if(!running) {
-            return;
-        }
+
         long now = currentTimeNanos;
         if(lastTimeNanos == 0) {
             lastTimeNanos =now;
         }
-
         int elapsed = (int) (now - lastTimeNanos);
         if(elapsed != 0) {
             framesPerSecond = 1_000_000_000 / elapsed;
-            MainGame game = MainGame.getInstance();
-            game.update(elapsed);
+
+            MainGame.getInstance().update(elapsed);
             invalidate();
         }
 
@@ -69,13 +63,12 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
     @Override
     protected void onDraw(Canvas canvas) {
-
         MainGame.getInstance().draw(canvas);
-
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         return MainGame.getInstance().onMoveEvent(event);
+
     }
 }

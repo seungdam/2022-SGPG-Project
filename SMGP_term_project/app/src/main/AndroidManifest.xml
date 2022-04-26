@@ -10,9 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SMGP_term_project">
         <activity
+            android:name=".app.GameActivity"
+            android:exported="false"
             android:screenOrientation="landscape"
+            />
+        <activity
             android:name=".app.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

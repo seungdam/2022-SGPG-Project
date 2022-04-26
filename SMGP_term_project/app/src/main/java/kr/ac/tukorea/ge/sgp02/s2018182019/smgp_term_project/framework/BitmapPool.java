@@ -15,7 +15,6 @@ public class BitmapPool {
             bitmap = BitmapFactory.decodeResource(res, mipmapResId);
             bitmaps.put(mipmapResId, bitmap);
         }
-            return bitmap;
+        return bitmap;
     }
 }
-
