@@ -30,14 +30,11 @@ public class MainGame {
     public boolean onMoveEvent(MotionEvent event) {
         int action = event.getAction();
         switch (action) {
-            case MotionEvent.ACTION_UP:
-                scrolling = false;
-                return true;
             case MotionEvent.ACTION_DOWN:
+                scrolling=true;
             case MotionEvent.ACTION_MOVE:
                 mouseX = event.getX();
                 mouseY = event.getY();
-                scrolling = true;
                 return true;
         }
         return false;
