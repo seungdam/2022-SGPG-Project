@@ -13,7 +13,8 @@ public class Topping extends Sprite {
     }
 
     public void setPosition(float x,float y) {
-
+        this.x = x;
+        this.y = y;
     }
     public void update() {
 
