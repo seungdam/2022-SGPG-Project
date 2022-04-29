@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="slide_speed">10dp</dimen>dimen>
+    <dimen name="slide_speed">10dp</dimen>
+    <dimen name="topping_radius">22</dimen>dimen>
 </resources>
