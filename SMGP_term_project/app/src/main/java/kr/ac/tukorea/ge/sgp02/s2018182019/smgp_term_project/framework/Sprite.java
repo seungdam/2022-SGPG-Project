@@ -42,7 +42,7 @@ public class Sprite implements GameObject{
         canvas.drawBitmap(bitmap,null,dstRect,null);
     }
 
-    public void setDstRect(float width,float height) {
+    public void setDstRect(float x , float y, float width,float height) {
         dstRect.set(x - width / 2 , y - height / 2 , x + width / 2 , y - height / 2);
     }
 }

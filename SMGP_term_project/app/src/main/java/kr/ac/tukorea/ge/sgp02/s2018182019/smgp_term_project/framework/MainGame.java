@@ -14,12 +14,12 @@ public class MainGame {
     private static MainGame singleton;
     private  static final String TAG = MainGame.class.getSimpleName();
     public float frameTime;
-    public boolean scrolling = true;
+    public boolean scrollLeft = false;
+    public boolean scrollRight = false;
     public static float mouseX, mouseY;
-
+    public static int curScene = 0;
     protected ArrayList<ArrayList<GameObject>> layers;
     public enum Layer {bg , pizza,topping, COUNT };
-
     private GameObject backGround;
 
 
@@ -51,7 +51,8 @@ public class MainGame {
     }
     public void init() {
         initLayers(Layer.COUNT.ordinal());
-        add(Layer.bg,new BackGround(R.mipmap.kitchen,1));
+        add(Layer.bg,new BackGround(R.mipmap.kitchen,0));
+        add(Layer.bg,new BackGround(R.mipmap.cutting,1));
     }
 
     // 특정 위치에 도달하면 애니메이션 발생
@@ -59,10 +60,19 @@ public class MainGame {
         int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                scrolling=true;
-            case MotionEvent.ACTION_MOVE:
                 mouseX = event.getX();
                 mouseY = event.getY();
+                if(mouseX < Metrics.height * 0.1) {
+                    if(curScene != 0 && !scrollLeft)
+                        scrollLeft = true;
+                }
+                else if(mouseX > Metrics.height * 0.9) {
+                    if (curScene != 1 && !scrollRight)
+                        scrollRight = true;
+
+            }
+            case MotionEvent.ACTION_MOVE:
+
                 return true;
         }
         return false;
