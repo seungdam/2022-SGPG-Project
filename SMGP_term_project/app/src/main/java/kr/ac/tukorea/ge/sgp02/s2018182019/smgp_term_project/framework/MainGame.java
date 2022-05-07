@@ -51,6 +51,7 @@ public class MainGame {
     }
     public void init() {
         initLayers(Layer.COUNT.ordinal());
+
         add(Layer.bg,new BackGround(R.mipmap.kitchen,0));
         add(Layer.bg,new BackGround(R.mipmap.cutting,1));
     }
@@ -71,8 +72,6 @@ public class MainGame {
                         scrollRight = true;
 
             }
-            case MotionEvent.ACTION_MOVE:
-
                 return true;
         }
         return false;

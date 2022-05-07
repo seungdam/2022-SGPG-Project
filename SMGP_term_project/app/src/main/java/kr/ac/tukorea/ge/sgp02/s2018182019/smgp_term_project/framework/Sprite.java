@@ -43,6 +43,6 @@ public class Sprite implements GameObject{
     }
 
     public void setDstRect(float x , float y, float width,float height) {
-        dstRect.set(x - width / 2 , y - height / 2 , x + width / 2 , y - height / 2);
+        dstRect.set(x - width / 2 , y - height / 2 , x + width / 2 , y + height / 2);
     }
 }
