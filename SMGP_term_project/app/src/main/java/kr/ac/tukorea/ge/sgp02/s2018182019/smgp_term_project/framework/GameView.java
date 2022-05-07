@@ -11,6 +11,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class GameView extends View implements Choreographer.FrameCallback {
     public static GameView view;
     private long lastTimeNanos;
@@ -19,10 +21,24 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private boolean running = true;
     public static final String TAG = GameView.class.getSimpleName();
 
+    protected ArrayList<ArrayList<GameObject>> layers;
+    public enum Layer  {kitchen_bg, counter_bg, cutting_bg}
+
+
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         view = this;
     }
+
+    // 게임 오브젝트 레이어 관련
+    private void initLayers(int count) {
+        layers = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            layers.add(new ArrayList<>());
+        }
+    }
+
+
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
