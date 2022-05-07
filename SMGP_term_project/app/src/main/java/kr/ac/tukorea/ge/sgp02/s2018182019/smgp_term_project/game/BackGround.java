@@ -20,7 +20,7 @@ public class BackGround extends Sprite {
     public BackGround(int bitmapResId,int scene) {
         super(Metrics.width/ 2  +  (Metrics.width * scene), Metrics.height/ 2, Metrics.width, Metrics.height, bitmapResId);
 
-        scrollSpeed = Metrics.size(R.dimen.slide_speed);
+        scrollSpeed = 10.0f;
         height = bitmap.getHeight() * Metrics.width / bitmap.getWidth();
         srcRect.set(0, 0 , bitmap.getWidth(), bitmap.getHeight());
         pastX = x;
@@ -29,55 +29,45 @@ public class BackGround extends Sprite {
 
     @Override
     public void update() {
+
+
         if(MainGame.getInstance().scrollLeft || MainGame.getInstance().scrollRight) {
             if(MainGame.getInstance().scrollLeft) {
                 x += scrollSpeed;
-                if( Math.abs(pastX - x) > Metrics.width / 2 ) {
-                    scrollSpeed -= 5;
+                if( Math.abs(pastX - x) >= Metrics.width / 2 ) {
+                    scrollSpeed -= 1.0f;
                 }
                 else {
-                    scrollSpeed += 5;
+                    scrollSpeed += 1.0f;
                 }
             }
             else if (MainGame.getInstance().scrollRight) {
                 x -= scrollSpeed;
-                if( Math.abs(x - pastX) > Metrics.width / 2 ) {
-                    scrollSpeed -= 5;
+                if( Math.abs(x - pastX) >= Metrics.width / 2 ) {
+                    scrollSpeed -= 1.0f;
                 }
                 else {
-                    scrollSpeed += 5;
+                    scrollSpeed += 1.0f;
                 }
             }
-
+            Log.d(TAG,"" +Metrics.width);
             // 만약 한 씬이 넘어갔더라면..
-            if (Math.abs(pastX - x) > Metrics.width) {
-                if(x < pastX) {
-                    x += Math.abs(Math.abs(pastX - x) - Metrics.width);
-                    Log.d(TAG,"" + Metrics.width + " " + Math.abs(pastX - x));
-
-                }
-                else if (x > pastX) {
-                    x -= 10;
-                    Log.d(TAG,"" + Metrics.width + " "+Math.abs(pastX - x));
-                }
-
-                setDstRect(x, y, Metrics.width, Metrics.height);
-
+            if (Math.abs(pastX - x) >= Metrics.width) {
                 if(MainGame.getInstance().scrollRight) {
+
                     MainGame.getInstance().curScene += 1;
+                    MainGame.getInstance().scrollRight = false;
                 }
                 else if(MainGame.getInstance().scrollLeft){
-                    MainGame.getInstance().curScene -=1;
-                }
 
-                MainGame.getInstance().scrollRight = false;
-                MainGame.getInstance().scrollLeft = false;
-                scrollSpeed = Metrics.size(R.dimen.slide_speed);
-                pastX = x;
+                    MainGame.getInstance().curScene -=1;
+                    MainGame.getInstance().scrollLeft = false;
+                }
+                scrollSpeed = 10.0f;
+
             }
-            else {
+            else
                 setDstRect(x, y, Metrics.width, Metrics.height);
-            }
         }
         else {
             pastX = x;

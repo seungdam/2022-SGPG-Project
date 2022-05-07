@@ -63,12 +63,12 @@ public class MainGame {
             case MotionEvent.ACTION_DOWN:
                 mouseX = event.getX();
                 mouseY = event.getY();
-                if(mouseX < Metrics.height * 0.1) {
+                if(mouseX < Metrics.width * 0.1) {
                     if(curScene != 0 && !scrollLeft)
                         scrollLeft = true;
                 }
-                else if(mouseX > Metrics.height * 0.9) {
-                    if (curScene != 1 && !scrollRight)
+                else if(mouseX > Metrics.width * 0.9) {
+                    if (curScene != 2 && !scrollRight)
                         scrollRight = true;
 
             }
