@@ -19,28 +19,21 @@ public class BackGround extends Sprite {
         scrollSpeed = speed;
 
         height = bitmap.getHeight() * Metrics.width / bitmap.getWidth();
+        srcRect.set(0, 0 , bitmap.getWidth(), bitmap.getHeight());
+
     }
 
     @Override
     public void update() {
 
-        // 임시 스크롤링 애니메이션.
-        Log.d(TAG, "스피드값 : " + scrollSpeed  + "X : "  + MainGame.getInstance().mouseX + " " + Metrics.height );
-        if (MainGame.getInstance().mouseX > Metrics.height  * 0.9 && MainGame.getInstance().scrolling) {
-            scrollSpeed += 1;
-        }
-        else if (MainGame.getInstance().mouseX < Metrics.height  * 0.1 && MainGame.getInstance().scrolling) {
-                scrollSpeed -= 1;
-        }
-        if (scrollSpeed % 90 == 0 ) {
-            MainGame.getInstance().scrolling = false;
-        }
+
+
     }
 
     @Override
     public void draw(Canvas canvas) {
         Log.d(TAG,"" + bitmap.getWidth());
-        srcRect.set(scrollSpeed, 0 , bitmap.getWidth() / 4 + scrollSpeed, bitmap.getHeight());
+
         canvas.drawBitmap(bitmap, srcRect, dstRect, null);
     }
 }
