@@ -2,36 +2,33 @@ package kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.game;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.util.Log;
 
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.R;
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.MainGame;
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.Metrics;
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.Sprite;
 
-public class BackGround extends Sprite {
+public class ToppingCage extends Sprite {
+    float x, y;
+    float scrollSpeed = 10;
+    float pastX;
 
-    private  static final String TAG = MainGame.class.getSimpleName();
-    private Rect srcRect = new Rect();
-    private float scrollSpeed ;
-    private int height;
-    private float pastX;
-    private static int curScene;
-    public BackGround(int bitmapResId,int scene) {
-        super(Metrics.width/ 2  +  (Metrics.width * scene), Metrics.height/ 2, Metrics.width, Metrics.height, bitmapResId);
-
-        scrollSpeed = 10.0f;
-        height = bitmap.getHeight() * Metrics.width / bitmap.getWidth();
+    public ToppingCage(float y,int bitmapResId) {
+        super((Metrics.width) * 1.1f, (Metrics.height * 0.1f) + (Metrics.width / 10 * y) , Metrics.width / 10, Metrics.width / 10, bitmapResId);
+        pastX = (Metrics.width) *  1.1f;
         srcRect.set(0, 0 , bitmap.getWidth(), bitmap.getHeight());
-        pastX = x;
-        curScene = MainGame.getInstance().curScene;
     }
 
-    @Override
+
     public void update() {
+        if(MainGame.getInstance().curScene == 1) {
 
-        scrollAnimate();
+        }
+    }
 
+    public void draw(Canvas canvas) {
+        if(MainGame.getInstance().curScene == 1)
+            canvas.drawBitmap(bitmap, srcRect, dstRect, null);
     }
 
     private void scrollAnimate() {
@@ -75,10 +72,4 @@ public class BackGround extends Sprite {
         }
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-       // Log.d(TAG,"" + x + ", " +y);
-
-        canvas.drawBitmap(bitmap, srcRect, dstRect, null);
-    }
 }

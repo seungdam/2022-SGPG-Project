@@ -4,10 +4,12 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.RectF;
 
 public class Sprite implements GameObject{
     protected Bitmap bitmap;
+    protected Rect srcRect =new Rect();
     protected RectF dstRect = new RectF();
     protected float x , y,radius;
 

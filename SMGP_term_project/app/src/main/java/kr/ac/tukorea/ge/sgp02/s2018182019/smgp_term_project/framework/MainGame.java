@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.R;
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.game.BackGround;
+import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.game.ToppingCage;
 
 // 객체의 생성은 모두 여기서 관리
 public class MainGame {
@@ -19,7 +20,7 @@ public class MainGame {
     public static float mouseX, mouseY;
     public static int curScene = 0;
     protected ArrayList<ArrayList<GameObject>> layers;
-    public enum Layer {bg , pizza,topping, COUNT };
+    public enum Layer {bg, customer ,fg, pizza,topping, COUNT };
     private GameObject backGround;
 
 
@@ -51,9 +52,14 @@ public class MainGame {
     }
     public void init() {
         initLayers(Layer.COUNT.ordinal());
-
-        add(Layer.bg,new BackGround(R.mipmap.kitchen,0));
-        add(Layer.bg,new BackGround(R.mipmap.cutting,1));
+        add(Layer.bg,new BackGround(R.mipmap.floor,0));
+        add(Layer.fg,new BackGround(R.mipmap.counter2,0));
+        add(Layer.fg,new BackGround(R.mipmap.kitchen2,1));
+        add(Layer.fg,new BackGround(R.mipmap.cutting,2));
+        add(Layer.topping, new ToppingCage(0,R.mipmap.olivecage));
+        add(Layer.topping, new ToppingCage(1,R.mipmap.peperonicage));
+        add(Layer.topping, new ToppingCage(2,R.mipmap.mushroomcage));
+        add(Layer.topping, new ToppingCage(3,R.mipmap.meatcage));
     }
 
     // 특정 위치에 도달하면 애니메이션 발생
@@ -65,11 +71,15 @@ public class MainGame {
                 mouseY = event.getY();
                 if(mouseX < Metrics.width * 0.1) {
                     if(curScene != 0 && !scrollLeft)
+                        curScene -=1;
                         scrollLeft = true;
+
                 }
                 else if(mouseX > Metrics.width * 0.9) {
                     if (curScene != 2 && !scrollRight)
+                        curScene += 1;
                         scrollRight = true;
+
 
             }
                 return true;
