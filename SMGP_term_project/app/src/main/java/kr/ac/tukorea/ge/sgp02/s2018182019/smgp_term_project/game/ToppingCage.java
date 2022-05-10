@@ -1,7 +1,10 @@
 package kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.game;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.R;
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.MainGame;
@@ -9,26 +12,28 @@ import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.Metrics;
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.Sprite;
 
 public class ToppingCage extends Sprite {
-    float x, y;
     float scrollSpeed = 10;
     float pastX;
-
+    RectF boundingBox;
+    Paint paint = new Paint();
     public ToppingCage(float y,int bitmapResId) {
         super((Metrics.width) * 1.1f, (Metrics.height * 0.1f) + (Metrics.width / 10 * y) , Metrics.width / 10, Metrics.width / 10, bitmapResId);
         pastX = (Metrics.width) *  1.1f;
         srcRect.set(0, 0 , bitmap.getWidth(), bitmap.getHeight());
+
+        paint.setColor(Color.RED);
+        paint.setStyle(Paint.Style.STROKE);
+        boundingBox = dstRect;
     }
 
 
     public void update() {
-        if(MainGame.getInstance().curScene == 1) {
-
-        }
+        scrollAnimate();
     }
 
     public void draw(Canvas canvas) {
-        if(MainGame.getInstance().curScene == 1)
             canvas.drawBitmap(bitmap, srcRect, dstRect, null);
+            canvas.drawRect(boundingBox,paint);
     }
 
     private void scrollAnimate() {
@@ -64,8 +69,10 @@ public class ToppingCage extends Sprite {
                 }
                 scrollSpeed = 10.0f;
             }
-            else
-                setDstRect(x, y, Metrics.width, Metrics.height);
+            else {
+                setDstRect(x, y, Metrics.width / 10, Metrics.width / 10);
+                boundingBox = dstRect;
+                }
         }
         else {
             pastX = x;

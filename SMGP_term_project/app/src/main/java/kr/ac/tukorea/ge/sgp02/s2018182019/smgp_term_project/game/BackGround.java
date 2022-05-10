@@ -13,7 +13,8 @@ public class BackGround extends Sprite {
 
     private  static final String TAG = MainGame.class.getSimpleName();
     private Rect srcRect = new Rect();
-    private float scrollSpeed ;
+    private float scrollSpeed;
+    private float scrollOffset= 1.0f;
     private int height;
     private float pastX;
     private static int curScene;
@@ -29,9 +30,7 @@ public class BackGround extends Sprite {
 
     @Override
     public void update() {
-
         scrollAnimate();
-
     }
 
     private void scrollAnimate() {
@@ -39,31 +38,31 @@ public class BackGround extends Sprite {
             if(MainGame.getInstance().scrollLeft) {
                 x += scrollSpeed;
                 if( Math.abs(pastX - x) >= Metrics.width / 2 ) {
-                    scrollSpeed -= 1.0f;
+                    scrollSpeed -= scrollOffset;
                 }
                 else {
-                    scrollSpeed += 1.0f;
+                    scrollSpeed += scrollOffset;
                 }
             }
             else if (MainGame.getInstance().scrollRight) {
                 x -= scrollSpeed;
                 if( Math.abs(x - pastX) >= Metrics.width / 2 ) {
-                    scrollSpeed -= 1.0f;
+                    scrollSpeed -= scrollOffset;
                 }
                 else {
-                    scrollSpeed += 1.0f;
+                    scrollSpeed += scrollOffset;
                 }
             }
 
             // 만약 한 씬이 넘어갔더라면..
             if (Math.abs(pastX - x) >= Metrics.width) {
                 if(MainGame.getInstance().scrollRight) {
-
                     MainGame.getInstance().scrollRight = false;
+                    MainGame.getInstance().curScene +=1;
                 }
                 else if(MainGame.getInstance().scrollLeft){
-
                     MainGame.getInstance().scrollLeft = false;
+                    MainGame.getInstance().curScene -=1;
                 }
                 scrollSpeed = 10.0f;
             }
@@ -72,6 +71,7 @@ public class BackGround extends Sprite {
         }
         else {
             pastX = x;
+            setDstRect(pastX, y, Metrics.width, Metrics.height);
         }
     }
 

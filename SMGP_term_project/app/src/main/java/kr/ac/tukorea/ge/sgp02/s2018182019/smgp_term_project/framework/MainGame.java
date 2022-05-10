@@ -71,13 +71,11 @@ public class MainGame {
                 mouseY = event.getY();
                 if(mouseX < Metrics.width * 0.1) {
                     if(curScene != 0 && !scrollLeft)
-                        curScene -=1;
                         scrollLeft = true;
 
                 }
                 else if(mouseX > Metrics.width * 0.9) {
                     if (curScene != 2 && !scrollRight)
-                        curScene += 1;
                         scrollRight = true;
 
 
