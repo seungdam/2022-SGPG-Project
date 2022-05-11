@@ -7,7 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-public class Sprite implements GameObject{
+public abstract class Sprite implements GameObject{
     protected Bitmap bitmap;
     protected Rect srcRect =new Rect();
     protected RectF dstRect = new RectF();
@@ -35,9 +35,9 @@ public class Sprite implements GameObject{
     }
 
     @Override
-    public void update() {
-
+    public void update(float frameTime) {
     }
+
 
     @Override
     public void draw(Canvas canvas) {

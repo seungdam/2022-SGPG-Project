@@ -1,5 +1,6 @@
 package kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.game;
 
+import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -7,7 +8,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.R;
-import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.MainGame;
+import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.MainScene;
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.Metrics;
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.Sprite;
 
@@ -37,42 +38,44 @@ public class ToppingCage extends Sprite {
     }
 
     private void scrollAnimate() {
-        if(MainGame.getInstance().scrollLeft || MainGame.getInstance().scrollRight) {
-            if(MainGame.getInstance().scrollLeft) {
-                x += scrollSpeed;
-                if( Math.abs(pastX - x) >= Metrics.width / 2 ) {
-                    scrollSpeed -= 1.0f;
-                }
-                else {
-                    scrollSpeed += 1.0f;
-                }
-            }
-            else if (MainGame.getInstance().scrollRight) {
-                x -= scrollSpeed;
-                if( Math.abs(x - pastX) >= Metrics.width / 2 ) {
-                    scrollSpeed -= 1.0f;
-                }
-                else {
-                    scrollSpeed += 1.0f;
-                }
-            }
+        if(MainScene.getInstance().scrollLeft || MainScene.getInstance().scrollRight) {
+//            if(MainScene.getInstance().scrollLeft) {
+//                x += scrollSpeed;
+//                if( Math.abs(pastX - x) >= Metrics.width / 2 ) {
+//                    scrollSpeed -= 1.0f;
+//                }
+//                else {
+//                    scrollSpeed += 1.0f;
+//                }
+//            }
+//            else if (MainScene.getInstance().scrollRight) {
+//                x -= scrollSpeed;
+//                if( Math.abs(x - pastX) >= Metrics.width / 2 ) {
+//                    scrollSpeed -= 1.0f;
+//                }
+//                else {
+//                    scrollSpeed += 1.0f;
+//                }
+//            }
+//
+//            // 만약 한 씬이 넘어갔더라면..
+//            if (Math.abs(pastX - x) >= Metrics.width) {
+//                if(MainScene.getInstance().scrollRight) {
+//
+//                    MainScene.getInstance().scrollRight = false;
+//                }
+//                else if(MainScene.getInstance().scrollLeft){
+//
+//                    MainScene.getInstance().scrollLeft = false;
+//                }
+//                scrollSpeed = 10.0f;
+//            }
+//            else {
+//                setDstRect(x, y, Metrics.width / 10, Metrics.width / 10);
+//                boundingBox = dstRect;
+//                }
 
-            // 만약 한 씬이 넘어갔더라면..
-            if (Math.abs(pastX - x) >= Metrics.width) {
-                if(MainGame.getInstance().scrollRight) {
 
-                    MainGame.getInstance().scrollRight = false;
-                }
-                else if(MainGame.getInstance().scrollLeft){
-
-                    MainGame.getInstance().scrollLeft = false;
-                }
-                scrollSpeed = 10.0f;
-            }
-            else {
-                setDstRect(x, y, Metrics.width / 10, Metrics.width / 10);
-                boundingBox = dstRect;
-                }
         }
         else {
             pastX = x;

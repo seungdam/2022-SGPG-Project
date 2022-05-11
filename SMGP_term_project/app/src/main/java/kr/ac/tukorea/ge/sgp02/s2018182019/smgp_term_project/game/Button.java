@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.BitmapPool;
+import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.Metrics;
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.Sprite;
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.Touchable;
 
@@ -22,7 +23,8 @@ public class Button extends Sprite implements Touchable {
         public boolean onTouch(Action action);
     }
     public Button(float x, float y, float w, float h, int bitmapResId, int pressedResId, Callback callback) {
-        super(x, y, w, h, bitmapResId);
+        super((Metrics.width) * 1.1f, (Metrics.height * 0.1f) + (Metrics.width / 10 * y) ,
+                Metrics.width / 10, Metrics.width / 10, bitmapResId);
         normalBitmap = bitmap;
         if (pressedResId != 0) {
             pressedBitmap = BitmapPool.get(pressedResId);

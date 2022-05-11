@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 
 // 토핑 오브젝트에 대한 인터페이스 구현
 public interface GameObject {
-    public void update();
+    public void update(float frameTime);
     public void draw(Canvas canvas);
 
 }

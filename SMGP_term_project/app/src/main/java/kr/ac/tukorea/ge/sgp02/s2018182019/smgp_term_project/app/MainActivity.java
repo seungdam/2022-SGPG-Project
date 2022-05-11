@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.R;
+import kr.ac.tukorea.ge.sgp02.s2018182019.smgp_term_project.framework.MainScene;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBtnStart(View view) {
-//        Log.d("tag", "onBtnStart()");
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
